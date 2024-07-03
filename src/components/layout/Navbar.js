@@ -6,6 +6,8 @@ import { IoSearch } from "react-icons/io5";
 import { FiCheckSquare } from "react-icons/fi";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+
   return (
     <>
       <Container>
@@ -31,13 +33,23 @@ const Navbar = () => {
           >
             <FiCheckSquare />
           </Check>
-          <My
-            onClick={() => {
-              window.location.href = "/mypage";
-            }}
-          >
-            <BsPersonCircle />
-          </My>
+          {!token ? (
+            <My
+              onClick={() => {
+                window.location.href = "/login";
+              }}
+            >
+              <BsPersonCircle />
+            </My>
+          ) : (
+            <My
+              onClick={() => {
+                window.location.href = "/mypage";
+              }}
+            >
+              <BsPersonCircle />
+            </My>
+          )}
         </NavBox>
       </Container>
     </>
